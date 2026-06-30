@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import { getResume } from "@/lib/contentful";
+import { getResume, getFooter, getNavbar } from "@/lib/contentful";
 import ThemeProvider from "@/components/ThemeProvider";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const resumeUrl = await getResume();
+  const footer = await getFooter();
+  const navItems = await getNavbar();
 
   return (
     <html
@@ -34,8 +37,9 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
-          <Navbar resumeUrl={resumeUrl} />
+          <Navbar resumeUrl={resumeUrl} navItems={navItems} />
           {children}
+          <Footer footerText={footer?.footerText} linkedIn={footer?.linkedIn} gitHub={footer?.gitHub} />
         </ThemeProvider>
       </body>
     </html>

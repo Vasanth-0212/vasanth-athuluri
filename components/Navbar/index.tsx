@@ -4,19 +4,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Download, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
-
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Projects", href: "#projects" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-];
+import { NavItem } from "@/lib/contentful";
 
 interface Props {
   resumeUrl: string | null;
+  navItems: NavItem[];
 }
 
-export default function Navbar({ resumeUrl }: Props) {
+export default function Navbar({ resumeUrl, navItems }: Props) {
   const { theme, toggle } = useTheme();
   return (
     <header className="fixed inset-x-0 top-6 z-50 flex justify-center px-4">
@@ -46,15 +41,17 @@ export default function Navbar({ resumeUrl }: Props) {
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <Link
-              key={item.href}
-              href={item.href}
+              key={item.navLink}
+              href={item.navLink}
+              target={item.openInNewTab ? "_blank" : undefined}
+              rel={item.openInNewTab ? "noopener noreferrer" : undefined}
               className="
                 text-sm font-medium text-slate-600 dark:text-slate-300
                 transition-all duration-300
                 hover:text-slate-900 dark:hover:text-white
               "
             >
-              {item.label}
+              {item.title}
             </Link>
           ))}
         </div>
@@ -62,11 +59,17 @@ export default function Navbar({ resumeUrl }: Props) {
         {/* CTA */}
         <div className="flex items-center gap-3">
           {resumeUrl && (
-            <a
-              href={resumeUrl}
-              download
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={async () => {
+                const res = await fetch(resumeUrl);
+                const blob = await res.blob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "Vasanth_Athulluri_Resume.pdf";
+                a.click();
+                URL.revokeObjectURL(url);
+              }}
               className="
                 inline-flex items-center gap-2
                 rounded-xl
@@ -78,17 +81,19 @@ export default function Navbar({ resumeUrl }: Props) {
                 transition-all duration-300
                 hover:-translate-y-0.5
                 hover:shadow-md
+                cursor-pointer
               "
             >
               <Download size={15} />
               Resume
-            </a>
+            </button>
           )}
 
           <button
             onClick={toggle}
             aria-label="Toggle theme"
             className="
+              cursor-pointer
               rounded-xl
               border border-slate-200 dark:border-slate-700
               bg-white dark:bg-slate-800

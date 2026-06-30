@@ -18,16 +18,17 @@ export default function ProjectSection({ data }: Props) {
   }, [expanded, projects]);
 
   return (
-    <section
-      id="projects"
-      className="mx-auto max-w-7xl px-6 py-20"
-    >
+    <div className="bg-white dark:bg-slate-950 w-full">
+      <section
+        id="projects"
+        className="mx-auto max-w-7xl px-6 py-10"
+      >
       <div className="mb-14 text-center">
-        <h2 className="text-4xl font-bold text-gray-900">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
           Featured Projects
         </h2>
 
-        <p className="mt-4 text-gray-600">
+        <p className="mt-4 text-gray-600 dark:text-slate-400">
           Some of the projects I've worked on.
         </p>
       </div>
@@ -52,5 +53,6 @@ export default function ProjectSection({ data }: Props) {
         </div>
       )}
     </section>
+    </div>
   );
 }

@@ -61,14 +61,14 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+    <div className="rounded-3xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 shadow-sm">
       <form
         onSubmit={handleSubmit}
         className="space-y-6"
       >
         <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
               Name
             </label>
 
@@ -76,12 +76,12 @@ export default function ContactForm() {
               name="name"
               required
               placeholder="John Doe"
-              className="w-full rounded-xl text-black border border-gray-300 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+              className="w-full rounded-xl text-black dark:text-white bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 placeholder:text-gray-400 dark:placeholder:text-slate-500"
             />
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
+            <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
               Email
             </label>
 
@@ -90,13 +90,13 @@ export default function ContactForm() {
               name="email"
               required
               placeholder="john@example.com"
-              className="w-full rounded-xl text-black border border-gray-300 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+              className="w-full rounded-xl text-black dark:text-white bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 placeholder:text-gray-400 dark:placeholder:text-slate-500"
             />
           </div>
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-gray-700">
+          <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">
             Message
           </label>
 
@@ -105,7 +105,7 @@ export default function ContactForm() {
             required
             rows={6}
             placeholder="Tell me about your project..."
-            className="w-full resize-none rounded-xl text-black border border-gray-300 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+            className="w-full resize-none rounded-xl text-black dark:text-white bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 placeholder:text-gray-400 dark:placeholder:text-slate-500"
           />
         </div>
 
@@ -141,7 +141,7 @@ export default function ContactForm() {
           )}
         </button>
 
-        <div className="flex items-center justify-center gap-2 pt-2 text-sm text-gray-500">
+        <div className="flex items-center justify-center gap-2 pt-2 text-sm text-gray-500 dark:text-slate-400">
           <Mail size={16} />
           I'll get back to you as soon as possible.
         </div>

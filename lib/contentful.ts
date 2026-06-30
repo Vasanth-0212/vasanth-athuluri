@@ -41,7 +41,48 @@ export async function getAllPages(): Promise<PageEntry[]> {
   return entries.items as PageEntry[];
 }
 
-// ─── Resume ────────────────────────────────────────────────────
+// ─── Footer ────────────────────────────────────────────────────
+export async function getFooter(): Promise<{ footerText?: string; linkedIn?: string; gitHub?: string } | null> {
+  const entries = await client.getEntries({
+    content_type: 'footer',
+    limit: 1,
+  });
+
+  const item = entries.items[0] as any;
+  if (!item) return null;
+
+  return {
+    footerText: item.fields?.footerText as string | undefined,
+    linkedIn: item.fields?.linkedIn as string | undefined,
+    gitHub: item.fields?.github as string | undefined,
+  };
+}
+// ─── Navbar ────────────────────────────────────────────────────
+export interface NavItem {
+  title: string;
+  navLink: string;
+  openInNewTab: boolean;
+}
+
+export async function getNavbar(): Promise<NavItem[]> {
+  const entries = await client.getEntries({
+    content_type: 'navbar',
+    limit: 1,
+    include: 2,
+  });
+
+  const item = entries.items[0] as any;
+  if (!item) return [];
+
+  const navItems = item.fields?.navItems ?? [];
+
+  return navItems.map((navItem: any) => ({
+    title: navItem.fields.title as string,
+    navLink: navItem.fields.navLink as string,
+    openInNewTab: (navItem.fields.openInNewTab as boolean) ?? false,
+  }));
+}
+
 export async function getResume(): Promise<string | null> {
   const entries = await client.getEntries({
     content_type: 'resume',

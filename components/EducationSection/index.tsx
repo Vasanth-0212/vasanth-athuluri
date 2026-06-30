@@ -26,7 +26,7 @@ export default function EducationSection({ data }: Props) {
       className="relative py-4 overflow-hidden"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" />
 
       <div className="absolute top-20 left-20 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
       <div className="absolute bottom-10 right-10 h-96 w-96 rounded-full bg-purple-500/10 blur-3xl" />
@@ -38,11 +38,11 @@ export default function EducationSection({ data }: Props) {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-5xl font-bold text-slate-900">
+          <h2 className="text-5xl font-bold text-slate-900 dark:text-white">
             {title as string}
           </h2>
 
-          <p className="mt-4 text-slate-600">
+          <p className="mt-4 text-slate-600 dark:text-slate-400">
             My academic journey and achievements.
           </p>
         </motion.div>
@@ -106,7 +106,7 @@ export default function EducationSection({ data }: Props) {
                     -translate-y-1/2
                     rounded-full
                     border-4
-                    border-white
+                    border-white dark:border-slate-900
                     bg-blue-500
                     shadow-lg
                   "

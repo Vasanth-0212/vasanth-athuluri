@@ -78,7 +78,7 @@ export default function TechStackSection({ data }: Props) {
   return (
     <section
       id="tech-stack"
-      className="relative bg-white dark:bg-slate-950 py-24 overflow-hidden"
+      className="relative bg-white dark:bg-slate-950 py-10 lg:py-16 overflow-hidden"
     >
       {/* Background blobs */}
       <div className="absolute top-20 left-10 h-64 w-64 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />

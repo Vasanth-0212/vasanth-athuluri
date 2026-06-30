@@ -28,8 +28,8 @@ export default function EducationCard({
       <div
         className="
           rounded-3xl
-          border border-white/30
-          bg-white/70
+          border border-white/30 dark:border-slate-700/50
+          bg-white/70 dark:bg-slate-800/80
           backdrop-blur-lg
           p-6
           shadow-lg
@@ -41,11 +41,11 @@ export default function EducationCard({
       >
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h3 className="text-2xl font-bold text-slate-900">
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
               {title}
             </h3>
 
-            <p className="mt-2 text-slate-600">
+            <p className="mt-2 text-slate-600 dark:text-slate-400">
               {schoolCollege}
             </p>
           </div>
@@ -53,12 +53,12 @@ export default function EducationCard({
           <span
             className="
               rounded-full
-              bg-blue-100
+              bg-blue-100 dark:bg-blue-900/40
               px-3
               py-1
               text-sm
               font-medium
-              text-blue-700
+              text-blue-700 dark:text-blue-300
             "
           >
             {year}
@@ -66,11 +66,11 @@ export default function EducationCard({
         </div>
 
         <div className="mt-5">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             CGPA / Percentage
           </p>
 
-          <p className="text-3xl font-bold text-slate-900 mt-1">
+          <p className="text-3xl font-bold text-slate-900 dark:text-white mt-1">
             {percentageCgpa}
           </p>
         </div>
