@@ -3,6 +3,8 @@ import { getPage, AnyBlock } from '@/lib/contentful';
 import BlockRenderer from '@/components/BlockRenderer';
 import { notFound } from 'next/navigation';
 
+export const revalidate = 60;
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const page = await getPage(params.slug);
 
