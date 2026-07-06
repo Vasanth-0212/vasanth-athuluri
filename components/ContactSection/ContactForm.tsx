@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { Loader2, Mail, Send } from "lucide-react";
 
 export default function ContactForm() {
@@ -13,8 +13,9 @@ export default function ContactForm() {
     message: "",
   });
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
 
     setLoading(true);
     setStatus({
@@ -22,7 +23,7 @@ export default function ContactForm() {
       message: "",
     });
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
 
     const data = {
       name: formData.get("name"),
@@ -31,7 +32,6 @@ export default function ContactForm() {
     };
 
     try {
-      // Replace with your API endpoint
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -44,7 +44,7 @@ export default function ContactForm() {
         throw new Error("Failed");
       }
 
-      e.currentTarget.reset();
+      form.reset();
 
       setStatus({
         type: "success",
@@ -58,6 +58,7 @@ export default function ContactForm() {
     }
 
     setLoading(false);
+    setTimeout(() => setStatus({ type: null, message: "" }), 5000);
   }
 
   return (
