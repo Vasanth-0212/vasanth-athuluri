@@ -1,0 +1,23 @@
+services:
+  nextjs:
+    image: node:20-alpine
+    container_name: nextjs-dev
+
+    working_dir: /app
+
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - .env
+
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+      WATCHPACK_POLLING: "true"
+      TURBOPACK_POLL_INTERVAL: "1000"
+
+    command: sh -c "npm install && npm run dev"
