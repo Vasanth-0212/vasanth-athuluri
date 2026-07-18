@@ -33,11 +33,12 @@ export default function ProjectSection({ data }: Props) {
         </p>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="flex flex-col gap-16 lg:gap-24">
         {visibleProjects.map((project, index) => (
           <ProjectCard
             key={String(project.title ?? index)}
             project={project.fields as Record<string, unknown>}
+            index={index}
           />
         ))}
       </div>
